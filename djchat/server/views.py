@@ -11,7 +11,7 @@ class ServerListViewSet(viewsets.ViewSet):
         category = request.query_params.get("category")
 
         if category:
-            self.queryset.filter(category=category)
+            self.queryset = self.queryset.filter(category=category)
 
         serializer = ServerSerializer(self.queryset, many=True)
         return Response(serializer.data)
