@@ -21,6 +21,11 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
+from rest_framework.routers import DefaultRouter
+from server.views import ServerListViewSet
+
+router = DefaultRouter()
+router.register("api/server/select", viewset=ServerListViewSet, basename="server")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -36,4 +41,4 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
-]
+] + router.urls
